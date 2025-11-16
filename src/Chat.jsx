@@ -2,7 +2,7 @@ import React from "react";
 import "./Chat.css";
 
 function Chat() {
-  return <div>Chat</div>;
+  return <div></div>;
 }
 
 export default Chat;

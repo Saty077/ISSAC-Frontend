@@ -67,6 +67,7 @@ input {
 input:focus {
   outline: none;
 }
+
 .submit {
   height: 35px;
   width: 35px;
@@ -77,6 +78,7 @@ input:focus {
   right: 49px;
   position: relative;
   color: rgba(255, 255, 255, 0.26);
+  cursor: pointer;
 }
 
 .submit i:hover {

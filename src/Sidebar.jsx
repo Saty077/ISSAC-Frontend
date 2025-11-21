@@ -1,6 +1,24 @@
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "./MyContext";
 import "./Sidebar.css";
 
 function Sidebar() {
+  const { allThread, setAllThread, currThreadId } = useContext(MyContext);
+
+  const getAllThreads = async () => {
+    const response = await fetch("http://localhost:8080/api/thread");
+    const res = await response.json();
+    const filterData = res.map((thread) => ({
+      threadId: thread.threadId,
+      title: thread.title,
+    }));
+    setAllThread(filterData);
+  };
+
+  useEffect(() => {
+    getAllThreads();
+  }, []);
+
   return (
     <section className="Sidebar">
       <button>
@@ -11,9 +29,9 @@ function Sidebar() {
         </span>
       </button>
       <ul className="history">
-        <li>Thread1</li>
-        <li>Thread2</li>
-        <li>Thread3</li>
+        {allThread?.map((thread, idx) => (
+          <li key={idx}>{thread.title}</li>
+        ))}
       </ul>
       <div className="sign">By Satyam &hearts;</div>
     </section>

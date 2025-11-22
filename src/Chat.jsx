@@ -11,6 +11,10 @@ function Chat() {
   const [latestReply, setLatestReply] = useState(null);
 
   useEffect(() => {
+    if (reply === null) {
+      setLatestReply(null);
+      return;
+    }
     if (!prevChats?.length) return;
 
     const content = reply.split("");
@@ -42,12 +46,22 @@ function Chat() {
           </div>
         ))}
 
-        {prevChats.length > 0 && latestReply !== null && (
-          <div className="aiDiv" key={"typing"}>
-            <ReactMarkdown rehypePlugins={[RehypeHighlight]}>
-              {latestReply}
-            </ReactMarkdown>
-          </div>
+        {prevChats.length > 0 && (
+          <>
+            {latestReply === null ? (
+              <div className="aiDiv" key={"non-typing"}>
+                <ReactMarkdown rehypePlugins={[RehypeHighlight]}>
+                  {prevChats[prevChats.length - 1].content}
+                </ReactMarkdown>
+              </div>
+            ) : (
+              <div className="aiDiv" key={"typing"}>
+                <ReactMarkdown rehypePlugins={[RehypeHighlight]}>
+                  {latestReply}
+                </ReactMarkdown>
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

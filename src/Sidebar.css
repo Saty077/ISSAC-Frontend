@@ -98,3 +98,18 @@ button span {
   font-size: 14px;
   text-align: center;
 }
+
+.fa-trash-can {
+  opacity: 0;
+  right: 0;
+  position: absolute;
+  color: white;
+}
+
+.history li:hover .fa-trash-can {
+  opacity: 1;
+}
+
+.fa-trash-can:hover {
+  color: red !important;
+}

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { MyContext } from "./MyContext";
 import "./Sidebar.css";
 import { v1 as uuidv1 } from "uuid";
+import { Query } from "mongoose";
 
 function Sidebar() {
   const {
@@ -37,6 +38,22 @@ function Sidebar() {
     setPrevChats([]);
   };
 
+  const changeThread = async (newThreadId) => {
+    setCurrThreadId(newThreadId);
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/thread/${newThreadId}`
+      );
+      const res = await response.json();
+      setPrevChats(res);
+      setNewChat(false);
+      setReply(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <section className="Sidebar">
       <div className="upperSection">
@@ -62,7 +79,9 @@ function Sidebar() {
 
       <ul className="history">
         {allThread?.map((thread, idx) => (
-          <li key={idx}>{thread.title}</li>
+          <li key={idx} onClick={() => changeThread(thread.threadId)}>
+            {thread.title}
+          </li>
         ))}
       </ul>
       <div className="sign">By Satyam &hearts;</div>

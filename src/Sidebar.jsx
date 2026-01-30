@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { MyContext } from "./MyContext";
 import "./Sidebar.css";
 import { v1 as uuidv1 } from "uuid";
-import { Query } from "mongoose";
 
 function Sidebar() {
   const {
@@ -43,7 +42,7 @@ function Sidebar() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/thread/${newThreadId}`
+        `http://localhost:8080/api/thread/${newThreadId}`,
       );
       const res = await response.json();
       setPrevChats(res);
@@ -58,13 +57,13 @@ function Sidebar() {
     try {
       const response = await fetch(
         `http://localhost:8080/api/thread/${newThreaId}`,
-        { method: "DELETE" }
+        { method: "DELETE" },
       );
       const res = await response.json();
       console.log(res);
 
       setAllThread((prev) =>
-        prev.filter((thread) => thread.threadId !== newThreaId)
+        prev.filter((thread) => thread.threadId !== newThreaId),
       );
 
       if (newThreaId === currThreadId) {

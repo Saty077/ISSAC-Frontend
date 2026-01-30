@@ -16,7 +16,9 @@ function Sidebar() {
   } = useContext(MyContext);
 
   const getAllThreads = async () => {
-    const response = await fetch("http://localhost:8080/api/thread");
+    const response = await fetch(
+      "ec2-3-7-54-1.ap-south-1.compute.amazonaws.com:8080/api/thread",
+    );
     const res = await response.json();
     const filterData = res.map((thread) => ({
       threadId: thread.threadId,
@@ -42,7 +44,7 @@ function Sidebar() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/thread/${newThreadId}`,
+        `ec2-3-7-54-1.ap-south-1.compute.amazonaws.com:8080/api/thread/${newThreadId}`,
       );
       const res = await response.json();
       setPrevChats(res);
@@ -56,7 +58,7 @@ function Sidebar() {
   const deleteThread = async (newThreaId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/thread/${newThreaId}`,
+        `ec2-3-7-54-1.ap-south-1.compute.amazonaws.com:8080/api/thread/${newThreaId}`,
         { method: "DELETE" },
       );
       const res = await response.json();

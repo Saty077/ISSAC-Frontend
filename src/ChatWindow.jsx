@@ -29,7 +29,11 @@ function ChatWindow() {
       }),
     };
     try {
-      const response = await fetch("http://localhost:8080/api/chat", options);
+      // const response = await fetch("http://localhost:8080/api/chat", options); local
+      const response = await fetch(
+        "ec2-3-7-54-1.ap-south-1.compute.amazonaws.com:8080/api/chat",
+        options,
+      ); //aws
       const res = await response.json();
       console.log(res.reply);
       setReply(res.reply);

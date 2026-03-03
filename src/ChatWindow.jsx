@@ -90,7 +90,7 @@ function ChatWindow() {
             <i className="fas fa-paper-plane"></i>
           </div>
         </div>
-        <p className="info">ISSAC-AI can make mistakes</p>
+        <p className="info">This Chatbot is powered by gpt-4o-mini model.</p>
       </div>
     </div>
   );

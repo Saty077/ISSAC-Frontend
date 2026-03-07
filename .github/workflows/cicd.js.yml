@@ -16,7 +16,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+    - name: Clean up runner space
+      run: |
+        df -h
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/hostedtoolcache
+        sudo apt-get clean
+        df -h
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:

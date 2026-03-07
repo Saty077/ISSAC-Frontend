@@ -23,8 +23,6 @@ jobs:
         sudo apt-get clean
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf /opt/ghc
-        # Optional: Check remaining disk usage
-        sudo du -sh /*
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:

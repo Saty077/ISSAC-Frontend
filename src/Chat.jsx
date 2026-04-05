@@ -32,7 +32,7 @@ function Chat() {
 
   return (
     <>
-      {newChat && <h1>Ask Me Anything</h1>}
+      {newChat && <h1>Hi, What's in your mind today?</h1>}
       <div className="chats">
         {prevChats?.slice(0, -1).map((chat, idx) => (
           <div className={chat.role === "user" ? "userDiv" : "aiDiv"} key={idx}>
